@@ -8,8 +8,10 @@
     "doctrine/doctrine-bundle": "2.9.1",
     "doctrine/doctrine-fixtures-bundle": "3.4.4",
 
+
       "symfony/flex": "~2.2.5",
       "symfony/framework-bundle": "*",
+      "symfony/twig-bundle": "*",
       "symfony/console": "*",
       "symfony/runtime": "*",
       "symfony/yaml": "*",
