@@ -1,9 +1,45 @@
 {% extends 'Admin/html-layout.html.twig' %}
 
-{% block title %}Product categories :: {{ parent()}} {% endblock %}
+{% block title %}Product categories :: {{ parent() }} {% endblock %}
 
-{% block page_title%}Product categories {% endblock %}
+{% block page_title %}Product categories {% endblock %}
 
 {% block page_content %}
-    list of product categories
+    <div class="pt-3 pb-3 text-end">
+        <a href="{{ path('admin_product_categories_create') }}" class="btn btn-outline-success">Add new category</a>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th class="text-center">Id</th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Priority</th>
+            <th class="text-center">Actions</th>
+        </tr>
+        </thead>
+
+        <tbody class="text-center" >
+        {% for category in categories %}
+            <tr>
+                <td>
+                    {{ category.id }}
+                </td>
+                <td>
+                    {{ category.title }}
+                </td>
+                <td>
+                    {{ category.priority }}
+                </td>
+                <td>
+                    <a class="btn btn-outline-primary btn-sm" href="{{ path('admin_product_category_edit', {categoryId: category.id}) }}">Edit</a>
+                    <a class="btn btn-outline-danger btn-sm"
+                       href="{{ path('admin_product_category_remove',{categoryId: category.id}) }}"
+                       onclick="return confirm('u real want delete category')"
+                    >delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
 {% endblock %}
