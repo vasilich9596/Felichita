@@ -18,7 +18,7 @@
         </tr>
         </thead>
 
-        <tbody class="text-center" >
+        <tbody class="text-center">
         {% for category in categories %}
             <tr>
                 <td>
@@ -31,7 +31,8 @@
                     {{ category.priority }}
                 </td>
                 <td>
-                    <a class="btn btn-outline-primary btn-sm" href="{{ path('admin_product_category_edit', {categoryId: category.id}) }}">Edit</a>
+                    <a class="btn btn-outline-primary btn-sm"
+                       href="{{ path('admin_product_category_edit', {categoryId: category.id}) }}">Edit</a>
                     <a class="btn btn-outline-danger btn-sm"
                        href="{{ path('admin_product_category_remove',{categoryId: category.id}) }}"
                        onclick="return confirm('u real want delete category')"

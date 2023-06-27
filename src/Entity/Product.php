@@ -11,6 +11,8 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 
 #[Entity]
@@ -28,15 +30,22 @@ class Product
 
 
     #[Column(name: 'title', type: 'string',length: 100)]
+    #[NotBlank]
+    #[Length(max: 100)]
     private string $title;
 
     #[Column(name: 'sub_title', type: 'string',length: 1000)]
+    #[NotBlank]
+    #[Length(max: 100)]
     private string $subTitle;
 
     #[Column(name: 'price', type: 'float',precision: 15,scale: 2)]
+    #[NotBlank]
     private float $price;
 
     #[Column(name:'ingredient', type: 'string')]
+    #[NotBlank]
+    #[Length(max: 1000)]
     private string $ingredient;
 
 
@@ -44,8 +53,65 @@ class Product
     private int $weight;
 
     #[Column(name: 'calories',type: 'integer',nullable: true)]
-    private ?int $calories;
+    private ?int $calories = 0;
 
+
+    #[Column(name: 'priority',type: 'integer',nullable: true)]
+    private int  $priority = 0;
+
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+
+    public function getCategory(): ProductCategory
+    {
+        return $this->category;
+    }
+
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+
+    public function getSubTitle(): string
+    {
+        return $this->subTitle;
+    }
+
+
+    public function getPrice(): float
+    {
+        return $this->price;
+    }
+
+
+    public function getIngredient(): string
+    {
+        return $this->ingredient;
+    }
+
+
+    public function getWeight(): int
+    {
+        return $this->weight;
+    }
+
+
+    public function getCalories(): ?int
+    {
+        return $this->calories;
+    }
+
+
+    public function getPriority(): int
+    {
+        return $this->priority;
+    }
 
 
     public function setCategory(ProductCategory $category): void
@@ -84,5 +150,10 @@ class Product
     public function setIngredient(string $ingredient): void
     {
         $this->ingredient = $ingredient;
+    }
+
+    public function setPriority(int $priority): void
+    {
+        $this->priority = $priority;
     }
 }
